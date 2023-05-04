@@ -1,18 +1,16 @@
 <template>
-  <div>
+  <div class="window">
+    <!-- <Settings /> -->
     <Background :state="state" />
-    <CheerStick ref="cheerstick" :level="level" />
+    <CheerStick ref="cheerstick" :level="level" :type="type" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, Ref } from "vue";
+import { defineComponent } from "vue";
 import CheerStick from "@/components/CheerStick.vue";
 import Background from "@/components/BackGround.vue";
-
-interface CheerStickComponent {
-  updateSpeed: (level: number) => void;
-}
+// import Settings from "@/components/SettingsDropdown.vue";
 
 export default defineComponent({
   components: {
@@ -23,6 +21,7 @@ export default defineComponent({
     return {
       level: 1,
       state: 1,
+      type: "stick",
     };
   },
   mounted() {
@@ -36,7 +35,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style>
-/* add any styles specific to this view component */
-</style>

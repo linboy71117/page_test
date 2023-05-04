@@ -1,11 +1,29 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import ReceiverView from "../views/ReceiverView.vue";
+import SenderView from "../views/SenderView.vue";
+import Settings from "@/components/SettingsDropdown.vue";
+import Footer from "@/components/BgFooter.vue";
+import RC from "@/views/ReceiverStick.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "home",
-    component: ReceiverView,
+    component: SenderView,
+  },
+  {
+    path: "/settings",
+    name: "settings",
+    component: Settings,
+  },
+  {
+    path: "/footer",
+    name: "footer",
+    component: Footer,
+  },
+  {
+    path: "/RC",
+    name: "rc",
+    component: RC,
   },
 ];
 

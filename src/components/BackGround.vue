@@ -1,6 +1,7 @@
 <template>
   <div class="background">
     <img class="background-top" src="../assets/BG-top.png" />
+    <img class="background-file" src="../assets/BG-file.png" />
     <img class="background-main" src="../assets/BG-main-window.png" />
     <img
       v-for="i in currentState"
@@ -61,12 +62,18 @@ export default defineComponent({
   left: 0%;
   object-fit: cover;
 }
-
+.background-file {
+  position: absolute;
+  width: 29%;
+  top: 5.7%;
+  left: 3.9%;
+  object-fit: cover;
+}
 .background-main {
   z-index: 3;
   position: absolute;
   left: 16.71%;
-  top: 17.13%;
+  top: 19.13%;
   width: 65.14%;
 }
 
@@ -130,9 +137,9 @@ export default defineComponent({
 .background-image-7 {
   position: absolute;
   z-index: 6;
-  width: 62.34%;
-  right: 0%;
-  top: 26.84%;
+  width: 59.34%;
+  right: -1.5%;
+  top: 24.84%;
   object-fit: cover;
   opacity: 0;
   animation: pop-out-lb 0.18s ease-out forwards;

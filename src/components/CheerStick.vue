@@ -1,7 +1,12 @@
 <template>
   <div class="container">
     <div class="stick-container">
-      <img :src="stickImage" alt="stick" class="stick" />
+      <img
+        :src="stickImage"
+        alt="stick"
+        class="stick"
+        :style="{ width: width + 'px', height: height + 'px' }"
+      />
     </div>
   </div>
 </template>
@@ -9,7 +14,9 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 interface StickImages {
-  [key: number]: string;
+  [key: string]: {
+    [key: number]: string;
+  };
 }
 
 export default defineComponent({
@@ -17,16 +24,52 @@ export default defineComponent({
     level: {
       type: Number,
       required: true,
+      default: 1,
+    },
+    type: {
+      type: String,
+      required: true,
+      default: "stick",
+    },
+    stopAnimation: {
+      type: Boolean,
+      default: false,
+    },
+    height: {
+      type: Number,
+      required: false,
+      default: 646,
+    },
+    width: {
+      type: Number,
+      required: false,
+      default: 560,
     },
   },
   data() {
     return {
       stickImages: {
-        1: require("@/assets/stick-level-1.png"),
-        2: require("@/assets/stick-level-2.png"),
-        3: require("@/assets/stick-level-3.png"),
-        4: require("@/assets/stick-level-4.png"),
-        5: require("@/assets/stick-level-5.png"),
+        stick: {
+          1: require("@/assets/stick-level-1.png"),
+          2: require("@/assets/stick-level-1.png"),
+          3: require("@/assets/stick-level-1.png"),
+          4: require("@/assets/stick-level-1.png"),
+          5: require("@/assets/stick-level-1.png"),
+        },
+        flower: {
+          1: require("@/assets/flower-level-1.png"),
+          2: require("@/assets/flower-level-1.png"),
+          3: require("@/assets/flower-level-1.png"),
+          4: require("@/assets/flower-level-1.png"),
+          5: require("@/assets/flower-level-1.png"),
+        },
+        unknown: {
+          1: require("@/assets/sword-level-1.png"),
+          2: require("@/assets/sword-level-1.png"),
+          3: require("@/assets/sword-level-1.png"),
+          4: require("@/assets/sword-level-1.png"),
+          5: require("@/assets/sword-level-1.png"),
+        },
       } as StickImages,
       intervalId: 0,
       duration: 1,
@@ -34,12 +77,12 @@ export default defineComponent({
   },
   methods: {
     updateDuration() {
-      this.duration = (6 - this.level) / 3;
+      this.duration = (5.7 - this.level) / 3;
     },
   },
   computed: {
     stickImage(): string {
-      return this.stickImages[this.level];
+      return this.stickImages[this.type][this.level];
     },
   },
   watch: {
@@ -49,12 +92,13 @@ export default defineComponent({
   },
   mounted() {
     this.updateDuration();
-    const container = document.querySelector(".stick-container") as HTMLElement;
-    if (container) {
+    const container = this.$el.querySelector(".stick-container") as HTMLElement;
+    if (container && !this.stopAnimation) {
       let position = 0;
       let direction = 1;
       let angle = 0;
       this.intervalId = setInterval(() => {
+        console.log(this.stopAnimation);
         if (position === 0) {
           direction = 1;
         }
@@ -62,7 +106,7 @@ export default defineComponent({
           direction = -1;
         }
         position += direction;
-        angle = (position - 3) * 10;
+        angle = (position - 3) * 5;
         container.style.setProperty("--rotation-angle", `${angle}deg`);
         container.style.setProperty("--shake-duration", `${this.duration}s`);
       }, this.duration * 30);
@@ -82,12 +126,12 @@ export default defineComponent({
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 }
 .stick-container {
   position: relative;
-  bottom: 8%;
+  /* bottom: 8%; */
   display: inline-block;
   z-index: 5;
   transform-origin: bottom center;
@@ -100,37 +144,37 @@ export default defineComponent({
     transform: rotate(0deg);
   }
   9% {
-    transform: rotate(10deg);
+    transform: rotate(5deg);
   }
   18.2% {
-    transform: rotate(20deg);
+    transform: rotate(10deg);
   }
   27.3% {
-    transform: rotate(30deg);
+    transform: rotate(15deg);
   }
   36.3% {
-    transform: rotate(20deg);
+    transform: rotate(10deg);
   }
   45.4% {
-    transform: rotate(10deg);
+    transform: rotate(5deg);
   }
   54.5% {
     transform: rotate(0deg);
   }
   63.6% {
-    transform: rotate(-10deg);
+    transform: rotate(-5deg);
   }
   72.7% {
-    transform: rotate(-20deg);
+    transform: rotate(-10deg);
   }
   81.8% {
-    transform: rotate(-30deg);
+    transform: rotate(-15deg);
   }
   91% {
-    transform: rotate(-20deg);
+    transform: rotate(-10deg);
   }
   100% {
-    transform: rotate(-10deg);
+    transform: rotate(-5deg);
   }
 }
 </style>
