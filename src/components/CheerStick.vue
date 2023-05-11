@@ -63,7 +63,7 @@ export default defineComponent({
           4: require("@/assets/flower-level-1.png"),
           5: require("@/assets/flower-level-1.png"),
         },
-        unknown: {
+        sword: {
           1: require("@/assets/sword-level-1.png"),
           2: require("@/assets/sword-level-1.png"),
           3: require("@/assets/sword-level-1.png"),
@@ -120,14 +120,12 @@ export default defineComponent({
 
 <style scoped>
 .container {
-  position: absolute;
+  position: relative;
   top: 0%;
   left: 0%;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
 }
 .stick-container {
   position: relative;

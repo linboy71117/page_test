@@ -3,6 +3,7 @@ import SenderView from "../views/SenderView.vue";
 import Settings from "@/components/SettingsDropdown.vue";
 import Footer from "@/components/BgFooter.vue";
 import RC from "@/views/ReceiverStick.vue";
+import gm from "@/views/testGM.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -24,6 +25,11 @@ const routes: Array<RouteRecordRaw> = [
     path: "/RC",
     name: "rc",
     component: RC,
+  },
+  {
+    path: "/gm",
+    name: "gm",
+    component: gm,
   },
 ];
 

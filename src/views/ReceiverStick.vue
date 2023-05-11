@@ -57,7 +57,7 @@ export default defineComponent({
   methods: {
     addCheerstick() {
       const cheerstick = {
-        type: "unknown",
+        type: "sword",
         level: Math.floor(Math.random() * 3) + 1,
         x: Math.floor(Math.random() * window.innerWidth),
         y: 50,

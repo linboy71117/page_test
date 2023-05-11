@@ -13,7 +13,6 @@
       <img src="../assets/RefreshButton.png" @click="refreshPage" />
     </div>
     <div v-if="showDropdown" class="dropdown">
-      <img src="../assets/Dropdown.png" />
       <div class="dropdown-row images-row">
         <div
           class="dropdown-item"
@@ -22,16 +21,21 @@
           @click="selectCheerstick(cheerstick)"
         >
           <img
-            :src="'../assets/' + cheerstick + '-level-1.png'"
+            :src="require(`../assets/${cheerstick}.png`)"
             alt="stick"
             class="stick"
           />
-          <!-- <Cheerstick :type="cheerstick" :level="1" :stop-animation="true" /> -->
         </div>
       </div>
       <div class="dropdown-row display-row">
         <div class="display-window">
-          <!-- <Cheerstick :type="selectedCheerstick" /> -->
+          <CheerStick
+            :type="selectedCheerstickType"
+            :level="1"
+            :stop-animation="false"
+            :height="460"
+            :width="380"
+          />
         </div>
       </div>
       <button class="confirm-button" @click="confirmSelection">Confirm</button>
@@ -40,18 +44,18 @@
 </template>
 
 <script lang="ts">
-import Cheerstick from "@/components/CheerStick.vue";
+import CheerStick from "@/components/CheerStick.vue";
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  // components: {
-  //   Cheerstick,
-  // },
+  components: {
+    CheerStick,
+  },
   data() {
     return {
       showDropdown: false,
       selectedCheerstick: "Select Cheerstick",
-      cheersticks: ["stick", "flower", "unknown"],
+      cheersticks: ["stick", "flower", "sword"],
       selectedCheerstickType: "stick",
     };
   },
@@ -131,12 +135,16 @@ export default defineComponent({
   gap: 10px;
   max-width: 1000px; /* adjust to your desired max width */
   margin: 0 auto;
+  background-image: url(../assets/Dropdown.png);
+  width: 976px;
+  height: 1214px;
 }
 
 .dropdown-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column: 1 / span 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
 }
 
 .dropdown-item {
