@@ -2,33 +2,22 @@
   <div class="notification" :class="notificationClass">
     <div class="message">{{ message }}</div>
     <div class="button-container">
-      <button class="close-button" @click="handleLogin">Login</button>
+      <button class="close-button" @click="hideNotification">Confirm</button>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  ref,
-  onMounted,
-  onUnmounted,
-  SetupContext,
-} from "vue";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   data() {
     return {
-      message: "Login your google account" as string,
+      message:
+        "Press the buttom to confirm access to the accelerometer." as string,
       isActive: true as boolean,
       timeout: 0 as ReturnType<typeof setTimeout> | null,
     };
-  },
-  props: {
-    emitLogin: {
-      type: Function,
-      required: true,
-    },
   },
   computed: {
     notificationClass(): string {
@@ -48,10 +37,6 @@ export default defineComponent({
   methods: {
     hideNotification() {
       this.isActive = false;
-    },
-    handleLogin() {
-      this.hideNotification();
-      this.emitLogin(); // Emit the "login" event using the prop function
     },
   },
 });

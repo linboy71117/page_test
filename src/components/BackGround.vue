@@ -73,7 +73,7 @@ export default defineComponent({
   z-index: 3;
   position: absolute;
   left: 16.71%;
-  top: 19.13%;
+  top: 23.43%;
   width: 65.14%;
 }
 
@@ -139,7 +139,7 @@ export default defineComponent({
   z-index: 6;
   width: 59.34%;
   right: -1.5%;
-  top: 24.84%;
+  top: 29.84%;
   object-fit: cover;
   opacity: 0;
   animation: pop-out-lb 0.18s ease-out forwards;

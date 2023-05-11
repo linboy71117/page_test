@@ -1,9 +1,10 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 import SenderView from "../views/SenderView.vue";
 import Settings from "@/components/SettingsDropdown.vue";
 import Footer from "@/components/BgFooter.vue";
-import RC from "@/views/ReceiverStick.vue";
+import RC from "@/views/ReceiverView.vue";
 import gm from "@/views/testGM.vue";
+import users from "@/components/ReceiverUsers.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -31,10 +32,15 @@ const routes: Array<RouteRecordRaw> = [
     name: "gm",
     component: gm,
   },
+  {
+    path: "/users",
+    name: "users",
+    component: users,
+  },
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHashHistory(),
   routes,
 });
 

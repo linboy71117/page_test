@@ -69,7 +69,7 @@ export default defineComponent({
     confirmSelection() {
       if (this.selectedCheerstickType) {
         this.selectedCheerstick = this.selectedCheerstickType;
-        this.$emit("updateCheerstickType", this.selectedCheerstickType);
+        this.$emit("typeChange", this.selectedCheerstickType);
       }
       this.showDropdown = false;
     },
@@ -83,12 +83,13 @@ export default defineComponent({
 <style scoped>
 .settings {
   position: absolute;
-  top: 20px;
+  top: 80px;
   right: 5px;
   width: 21%;
   background-color: #afbc7d;
   display: grid;
   grid-template-rows: 50% 50%;
+  z-index: 9998;
 }
 
 .btn-1 {
@@ -138,6 +139,7 @@ export default defineComponent({
   background-image: url(../assets/Dropdown.png);
   width: 976px;
   height: 1214px;
+  z-index: 9999;
 }
 
 .dropdown-row {

@@ -1,12 +1,12 @@
 <template>
   <div class="background">
     <!-- <CheerStick
-      :type="'stick'"
-      :level="1"
-      :stop-animation="true"
-      :width="200"
-      :height="200"
-    /> -->
+        :type="'stick'"
+        :level="1"
+        :stop-animation="true"
+        :width="200"
+        :height="200"
+      /> -->
     <div class="receiver-stick">
       <div
         class="cheerstick"
@@ -52,17 +52,45 @@ export default defineComponent({
         this.numCheersticks++;
         this.addCheerstick();
       }
-    }, 3000);
+    }, 2000);
   },
   methods: {
     addCheerstick() {
+      const dir = this.numCheersticks % 2 == 0 ? 1 : -1;
+      const pos =
+        this.numCheersticks % 2 == 0
+          ? window.innerWidth * 0.0
+          : window.innerWidth * 0.9;
+      const interval = 38;
+      const ranInt = Math.random() * 2 - 1;
+      const cspeed = Math.floor(Math.random() * 4) + 1;
+      const sspeed = Math.floor(Math.random() * 4) + 1;
+      const xpos = Math.floor(
+        pos + dir * Math.floor(this.numCheersticks / 2) * interval + ranInt * 5
+      );
+      const ypos = Math.floor(
+        55 + this.numCheersticks * 1.6 + Math.random() * 5
+      );
       const cheerstick = {
         type: "sword",
-        level: Math.floor(Math.random() * 3) + 1,
-        x: Math.floor(Math.random() * window.innerWidth),
-        y: 50,
+        level: cspeed,
+        x: xpos,
+        y: ypos,
       } as CheerstickProps;
+      const shadow = {
+        type: "sshadow",
+        level: sspeed,
+        x: xpos + ranInt * 30,
+        y: ypos,
+      } as CheerstickProps;
+      if (this.numCheersticks % 7 == 0) {
+        cheerstick.type = "stick";
+        shadow.type = "bshadow";
+      }
+      this.cheersticks.push(shadow);
       this.cheersticks.push(cheerstick);
+      //   console.log(pos + " " + dir * this.numCheersticks * interval);
+      //   console.log(cheerstick.x + " " + cheerstick.y);
     },
   },
 });
@@ -81,7 +109,7 @@ export default defineComponent({
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 180px;
+  height: 200px;
   z-index: 0;
 }
 .cheerstick {
